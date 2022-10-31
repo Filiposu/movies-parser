@@ -9,9 +9,11 @@ node('workers'){
     stage('Quality Tests'){
         def imageTest= docker.build("${imageName}-test", "-f Dockerfile.test .")
         imageTest.inside{
-        sh 'golint'
+            sh 'golint'
         }
     }
+    
+    
     
     stage('Unit Tests'){
         imageTest.inside{
